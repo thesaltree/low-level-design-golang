@@ -1,0 +1,6 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore IDE project settings (JetBrains, etc.)
+.idea
+
