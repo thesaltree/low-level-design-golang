@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type Elevator struct {
 	ID               int
@@ -10,6 +13,7 @@ type Elevator struct {
 	CurrentLoad      int
 	ElevatorPanel    *ElevatorPanel
 	Destinations     []int
+	sync.Mutex
 }
 
 func NewElevator(id int) *Elevator {
@@ -17,12 +21,15 @@ func NewElevator(id int) *Elevator {
 }
 
 func (e *Elevator) AddDestination(destinationFloor int) {
+	e.Lock()
 	e.ElevatorPanel.AddDestinationFloor(destinationFloor)
 	e.Destinations = append(e.Destinations, destinationFloor)
 	fmt.Printf("Elevator %d received destination floor %d\n", e.ID, destinationFloor)
+	e.Unlock()
 }
 
 func (e *Elevator) RemoveDestination(destinationFloor int) {
+	e.Lock()
 	for i, floor := range e.Destinations {
 		if floor == destinationFloor {
 			e.Destinations = append(e.Destinations[:i], e.Destinations[i+1:]...)
@@ -30,16 +37,23 @@ func (e *Elevator) RemoveDestination(destinationFloor int) {
 			break
 		}
 	}
+	e.Unlock()
 }
 
 func (e *Elevator) UpdateCurrentFloor(newFloor int) {
+	e.Lock()
 	e.CurrentFloor = newFloor
+	e.Unlock()
 }
 
 func (e *Elevator) UpdateCurrentLoad(newLoad int) {
+	e.Lock()
 	e.CurrentLoad = newLoad
+	e.Unlock()
 }
 
 func (e *Elevator) UpdateCurrentDirection(newDirection Directions) {
+	e.Lock()
 	e.CurrentDirection = newDirection
+	e.Unlock()
 }
