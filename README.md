@@ -6,6 +6,7 @@ Welcome to the **Low-Level System Design in Go** repository! This repository con
 
 - [Overview](#overview)
 - [Parking Lot System](#parking-lot-system)
+- [Elevator System](#elevator-system)
 
 ## Overview
 
@@ -25,3 +26,18 @@ The first project in this repository is a **Parking Lot System**. This system si
 - Add and remove vehicles from the parking lot.
 - Display the availability of parking spots.
 - Calculate parking charges based on the duration of stay.
+
+## Elevator System
+
+The second project in this repository is an Elevator System. This system simulates an elevator control system in a multi-floor building. It demonstrates:
+
+- Multi-Elevator Management: Manages multiple elevators within a single building.
+- Request Handling: Processes floor requests and assigns the most suitable elevator based on proximity and current direction.
+- Direction Control: Dynamically changes elevator direction based on requests.
+- Concurrent Operations: Uses Go routines and synchronization to handle multiple elevator requests simultaneously.
+
+### Features
+
+- Request an elevator from any floor, specifying the desired direction (up or down).
+- Assign the nearest elevator to respond to requests.
+- Manage elevator movement and optimize direction changes based on requests and destinations.
