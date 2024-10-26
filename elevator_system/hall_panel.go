@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Directions string
 
 const (
@@ -20,4 +22,9 @@ func NewHallPanel(panelID int, sourceFloor int) *HallPanel {
 
 func (h *HallPanel) SetDirectionInstructions(directionInstruction Directions) {
 	h.DirectionInstruction = directionInstruction
+}
+
+func (h *HallPanel) RequestElevator(manager *ElevatorManager, direction Directions) (elevator *Elevator) {
+	fmt.Printf("Panel %d requesting elevator with direction %s from floor %d\n", h.PanelID, direction, h.SourceFloor)
+	return manager.AssignElevator(h.SourceFloor, direction)
 }

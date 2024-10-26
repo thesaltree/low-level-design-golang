@@ -57,3 +57,27 @@ func (e *Elevator) UpdateCurrentDirection(newDirection Directions) {
 	e.CurrentDirection = newDirection
 	e.Unlock()
 }
+
+func (e *Elevator) FarthestDestination() int {
+	maxFloor := 0
+
+	for _, floor := range e.Destinations {
+		if floor > maxFloor {
+			maxFloor = floor
+		}
+	}
+
+	return maxFloor
+}
+
+func (e *Elevator) NearestDestination() int {
+	minFloor := 100
+
+	for _, floor := range e.Destinations {
+		if floor < minFloor {
+			minFloor = floor
+		}
+	}
+
+	return minFloor
+}
