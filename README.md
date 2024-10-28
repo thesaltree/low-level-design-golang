@@ -7,6 +7,7 @@ Welcome to the **Low-Level System Design in Go** repository! This repository con
 - [Overview](#overview)
 - [Parking Lot System](#parking-lot-system)
 - [Elevator System](#elevator-system)
+- [Library Management System](#library-management-system)
 
 ## Overview
 
@@ -41,3 +42,19 @@ The second project in this repository is an Elevator System. This system simulat
 - Request an elevator from any floor, specifying the desired direction (up or down).
 - Assign the nearest elevator to respond to requests.
 - Manage elevator movement and optimize direction changes based on requests and destinations.
+
+## Library Management System
+
+The third project in this repository is a Library Management System. This system simulates a library where members can borrow and return books. It demonstrates:
+
+- Singleton design pattern for managing the library instance.
+- Book management with support for multiple copies of each book.
+- Member management, including borrowing history and borrowing limits.
+- Concurrency control to handle multiple borrow and return requests simultaneously.
+
+### Features
+
+- Add and remove books from the library collection.
+- Allow members to borrow and return books, with automatic status updates.
+- Check book availability and member borrowing quoto limit.
+- Maintain a history of borrowed books for each member.
