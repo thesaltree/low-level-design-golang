@@ -12,6 +12,7 @@ Welcome to the **Low-Level System Design in Go** repository! This repository con
 - [Parking Lot System](#parking-lot-system)
 - [Elevator System](#elevator-system)
 - [Library Management System](#library-management-system)
+- [Vending Machine System](#vending-machine-system)
 
 ## Overview
 
@@ -62,3 +63,17 @@ The third project in this repository is a Library Management System. This system
 - Allow members to borrow and return books, with automatic status updates.
 - Check book availability and member borrowing quoto limit.
 - Maintain a history of borrowed books for each member.
+
+## Vending Machine System
+
+The fourth project in this repository is a Vending Machine System. This system simulates a vending machine that accepts payments, dispenses products, and manages inventory. It demonstrates:
+
+- State Management: Uses the state pattern to manage vending machine states (e.g., waiting for money, product selection, dispensing).
+- Inventory Management: Keeps track of product stock and availability.
+- Transaction Processing: Handles money insertion, change return, and product dispensing.
+  
+### Features
+- Insert money and select a product for purchase.
+- Dispense product if sufficient funds are provided, or return change if funds are insufficient.
+- Automatically update inventory levels upon each transaction.
+- Handle various states in the vending machine’s workflow, including error handling for out-of-stock items or insufficient funds.
