@@ -13,6 +13,7 @@ Welcome to the **Low-Level System Design in Go** repository! This repository con
 - [Elevator System](#elevator-system)
 - [Library Management System](#library-management-system)
 - [Vending Machine System](#vending-machine-system)
+- [Social Media Platform](#social-media-platform)
 
 ## Overview
 
@@ -77,3 +78,26 @@ The fourth project in this repository is a Vending Machine System. This system s
 - Dispense product if sufficient funds are provided, or return change if funds are insufficient.
 - Automatically update inventory levels upon each transaction.
 - Handle various states in the vending machine’s workflow, including error handling for out-of-stock items or insufficient funds.
+
+## Social Media Platform
+
+The fifth project in this repository is a **Social Media Platform**. This system simulates a basic social media platform where users can connect, create posts, interact with posts, and view activity feeds. It demonstrates:
+
+- **Facade Pattern**: Simplifies user interaction with various social media functionalities (e.g., managing users, posts, friendships) through a unified interface.
+- **User and Post Management**: Allows the creation and management of users, posts, comments, and likes, encapsulated in dedicated manager classes.
+- **Concurrency Control**: Manages concurrent operations such as posting, commenting, and friend requests using synchronization techniques.
+  
+### Features
+
+- **User Registration and Profile Management**: Users can register on the platform with profile details, add a profile bio, and edit their information.
+- **Posting and Feed System**: Users can create posts and see posts from their friends in their feed.
+- **Friendship System**: Users can send and accept friend requests, and posts from friends are included in their feeds.
+- **Post Interactions**: Users can like and comment on posts from other users. The number of likes and all comments are viewable on each post.
+- **Feed Management**: Users can view a personalized feed of posts from their friends, sorted to display recent posts first.
+  
+### Implementation Highlights
+
+- **Concurrency with RWMutex**: Manages concurrent reads and writes to shared data (such as posts and users) to avoid race conditions.
+- **Error Handling**: Provides informative error messages for actions such as attempting to interact with nonexistent users or posts.
+- **Encapsulation of Features**: Each feature (users, posts, friendships) is encapsulated in a separate manager class, promoting modularity and ease of maintenance.
+
