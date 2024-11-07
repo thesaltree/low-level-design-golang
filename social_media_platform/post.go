@@ -15,7 +15,7 @@ type Post struct {
 	Comments        []*Comment
 	PublishedAt     time.Time
 	CommentsEnabled bool
-	HiddenFromUsers map[int]*User
+	HiddenFromUsers map[int]bool
 	mu              sync.RWMutex
 }
 
@@ -30,7 +30,7 @@ func NewPost(id int, userID int, content string, urls []*string) *Post {
 		Comments:        make([]*Comment, 0),
 		PublishedAt:     time.Now(),
 		CommentsEnabled: true,
-		HiddenFromUsers: make(map[int]*User),
+		HiddenFromUsers: make(map[int]bool),
 	}
 }
 
@@ -58,12 +58,12 @@ func (p *Post) GetLikes() int {
 	return p.Likes
 }
 
-func (p *Post) HideFromUser(user User) {
-	p.HiddenFromUsers[user.ID] = &user
+func (p *Post) HideFromUser(userID int) {
+	p.HiddenFromUsers[userID] = true
 }
 
-func (p *Post) UnhideFromUser(user User) {
-	delete(p.HiddenFromUsers, user.ID)
+func (p *Post) UnhideFromUser(userID int) {
+	delete(p.HiddenFromUsers, userID)
 }
 
 func (p *Post) IsHiddenFromUser(user User) bool {

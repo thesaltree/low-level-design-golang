@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	socialMedia := GetActivityManagerInstance()
+	socialMedia := NewActivityFacade()
 
 	// Simulate user actions
 
@@ -14,7 +14,7 @@ func main() {
 	socialMedia.AddUser(user1)
 	socialMedia.AddUser(user2)
 
-	// Create posts and add them to the social media platform
+	//Create posts and add them to the social media platform
 	post1 := NewPost(1, 1, "Today, I went to the park and walked 1000 steps!", nil)
 	post2 := NewPost(2, 2, "I painted a beautiful sunset on the wall!", nil)
 	post3 := NewPost(3, 1, "I've been working on a new video game!", nil)
@@ -33,11 +33,11 @@ func main() {
 	}
 
 	// Get user feeds
-	err = getUserFeed(socialMedia, user1)
+	err = getUserFeed(socialMedia, user1.ID)
 	if err != nil {
 		fmt.Println("Error getting user feed:", err)
 	}
-	err = getUserFeed(socialMedia, user2)
+	err = getUserFeed(socialMedia, user2.ID)
 	if err != nil {
 		fmt.Println("Error getting user feed:", err)
 	}
@@ -52,7 +52,7 @@ func main() {
 		fmt.Println("Error accepting friend request:", err)
 	}
 
-	err = getUserFeed(socialMedia, user1)
+	err = getUserFeed(socialMedia, user1.ID)
 	if err != nil {
 		fmt.Println("Error getting user feed:", err)
 	}
@@ -60,7 +60,7 @@ func main() {
 	// Publish and unpublish posts
 	err = socialMedia.UnpublishPost(1)
 
-	err = getUserFeed(socialMedia, user2)
+	err = getUserFeed(socialMedia, user2.ID)
 	if err != nil {
 		fmt.Println("Error getting user feed:", err)
 	}
@@ -92,8 +92,8 @@ func main() {
 	fmt.Printf("Post %d's likes: %d\n", post3.ID, post3.GetLikes())
 }
 
-func getUserFeed(socialMedia *ActivityManager, user *User) error {
-	feed, err := socialMedia.GetFeedPosts(user)
+func getUserFeed(socialMedia *ActivityFacade, userID int) error {
+	feed, err := socialMedia.GetFeedPosts(userID)
 	if err != nil {
 		fmt.Println("Error getting feed posts:", err)
 	}
