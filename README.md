@@ -1,3 +1,4 @@
+
 # Low-Level System Design in Go
 
 Welcome to the **Low-Level System Design in Go** repository! This repository contains various low-level system design problems and their solutions implemented in Go. The primary aim is to demonstrate the design and architecture of systems through practical examples.
@@ -10,6 +11,7 @@ Welcome to the **Low-Level System Design in Go** repository! This repository con
 - [Library Management System](#library-management-system)
 - [Vending Machine System](#vending-machine-system)
 - [Social Media Platform](#social-media-platform)
+- [Contributing Guidelines](#contributing-guidelines)
 
 ## Overview
 
@@ -97,3 +99,22 @@ The fifth project in this repository is a **Social Media Platform**. This system
 - **Error Handling**: Provides informative error messages for actions such as attempting to interact with nonexistent users or posts.
 - **Encapsulation of Features**: Each feature (users, posts, friendships) is encapsulated in a separate manager class, promoting modularity and ease of maintenance.
 
+## Contributing Guidelines
+Contributions to expand this repository with more low-level system design problems and solutions are welcomed. Here’s how you can contribute:
+
+### Steps to Contribute
+
+- Choose a System Design Problem.
+- Select a problem to implement, feel free to propose it in an issue.
+- Open a new issue in the repository to let maintainers know about the system design problem you plan to add. Provide a brief overview of the problem and your approach.
+- Follow Repository Standards. Use Go for the implementation. Follow the project structure and coding style used in the repository.
+- Include a clear README section for the problem with the following details: problem description, key features, design patterns used, concurrency or error handling highlights (if any)
+- Fork the repository, make your changes, and submit a pull request.
+- Ensure your code is clean, well-documented, and tested.
+- Your pull request will be reviewed by the maintainer. After addressing feedback, it will be merged into the repository.
+
+### Contribution Tips
+- Break the problem into smaller components and implement them incrementally.
+- Document your solution clearly to help others understand your implementation.
+  
+Thank you for contributing to Low-Level System Design in Go!
