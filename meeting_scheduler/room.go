@@ -48,7 +48,7 @@ func (m *MeetingRoom) BookRoom(capacity int, dur *interval) error {
 	}
 
 	// Check if the room calendar is free for the given interval
-	if m.isFree(dur) {
+	if m.calendar.isFree(dur) {
 		fmt.Printf("\nRoom %s is booked for the given interval startTime:%s endTime:%v\n", m.name, dur.start.String(), dur.end.String())
 		m.calendar.bookInterval(dur)
 		return nil
@@ -64,16 +64,12 @@ func (m *MeetingRoom) CancelRoom(durId int) {
 	m.calendar.cancelInterval(durId)
 }
 
-func (m *MeetingRoom) isFree(dur *interval) bool {
-	return m.calendar.isFree(dur)
-}
-
 // IsFree is use to explose outside
 func (m *MeetingRoom) IsFree(dur *interval) bool {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
-	return m.isFree(dur)
+	return m.calendar.isFree(dur)
 }
 
 func (m *MeetingRoom) hasCapacity(capacity int) bool {
