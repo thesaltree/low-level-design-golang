@@ -18,7 +18,7 @@ type MeetingRoom struct {
 	name     string
 	status   BookingStatus
 	location location
-	calender *Calendar
+	calendar *Calendar
 	mu       sync.Mutex
 }
 
@@ -28,7 +28,7 @@ func NewMeetingRoom(id int, capacity int, name string, location location) *Meeti
 		capacity: capacity,
 		name:     name,
 		location: location,
-		calender: &Calendar{
+		calendar: &Calendar{
 			interval: make(map[int]*interval),
 		},
 	}
@@ -47,10 +47,10 @@ func (m *MeetingRoom) BookRoom(capacity int, dur *interval) error {
 		return errors.New("Room does not have the capacity")
 	}
 
-	// Check if the room calender is free for the given interval
+	// Check if the room calendar is free for the given interval
 	if m.isFree(dur) {
 		fmt.Printf("\nRoom %s is booked for the given interval startTime:%s endTime:%v\n", m.name, dur.start.String(), dur.end.String())
-		m.calender.bookInterval(dur)
+		m.calendar.bookInterval(dur)
 		return nil
 	}
 
@@ -61,15 +61,11 @@ func (m *MeetingRoom) CancelRoom(durId int) {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 
-	m.calender.cancelInterval(durId)
+	m.calendar.cancelInterval(durId)
 }
 
 func (m *MeetingRoom) isFree(dur *interval) bool {
-	if m.calender.isFree(dur) {
-		return true
-	}
-
-	return false
+	return m.calendar.isFree(dur)
 }
 
 // IsFree is use to explose outside

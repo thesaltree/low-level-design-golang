@@ -45,12 +45,13 @@ func (ms *MeetingScheduler) BookMeeting(roomId int, meetingName string, particip
 }
 
 func (ms *MeetingScheduler) CancelMeeting(meetingId int) error {
-	if meetingId > len(ms.meeting) {
+	if meetingId >= len(ms.meeting) || meetingId < 0 || ms.meeting[meetingId] == nil {
 		return errors.New("There is no such meeting")
 	}
 
 	// cancel meeting
 	ms.meeting[meetingId].CancelMeeting()
+	ms.meeting[meetingId] = nil
 
 	return nil
 }

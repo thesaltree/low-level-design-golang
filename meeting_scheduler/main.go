@@ -11,12 +11,12 @@ func main() {
 	// prerequisites before scheduling the meeting
 
 	// create rooms1
-	room1 := &MeetingRoom{id: 1, capacity: 10, name: "Room 1", location: location{}, calender: &Calendar{
+	room1 := &MeetingRoom{id: 1, capacity: 10, name: "Room 1", location: location{}, calendar: &Calendar{
 		interval: make(map[int]*interval),
 	}}
 
 	// create rooms2
-	room2 := &MeetingRoom{id: 2, capacity: 10, name: "Room 2", location: location{}, calender: &Calendar{
+	room2 := &MeetingRoom{id: 2, capacity: 10, name: "Room 2", location: location{}, calendar: &Calendar{
 		interval: make(map[int]*interval),
 	}}
 
@@ -24,8 +24,8 @@ func main() {
 	users := []*User{
 		&User{id: 1, name: "sam", email: "sam@email.com"},
 		&User{id: 2, name: "ron", email: "ron@email.com"},
-		&User{id: 2, name: "don", email: "don@email.com"},
-		&User{id: 2, name: "him", email: "him@email.com"},
+		&User{id: 3, name: "don", email: "don@email.com"},
+		&User{id: 4, name: "him", email: "him@email.com"},
 	}
 
 	// first we will have already present rooms
