@@ -11,6 +11,7 @@ Welcome to the **Low-Level System Design in Go** repository! This repository con
 - [Library Management System](#library-management-system)
 - [Vending Machine System](#vending-machine-system)
 - [Social Media Platform](#social-media-platform)
+- [Meeting Scheduler](#meeting-scheduler)
 - [Contributing Guidelines](#contributing-guidelines)
 
 ## Overview
@@ -98,6 +99,24 @@ The fifth project in this repository is a **Social Media Platform**. This system
 - **Concurrency with RWMutex**: Manages concurrent reads and writes to shared data (such as posts and users) to avoid race conditions.
 - **Error Handling**: Provides informative error messages for actions such as attempting to interact with nonexistent users or posts.
 - **Encapsulation of Features**: Each feature (users, posts, friendships) is encapsulated in a separate manager class, promoting modularity and ease of maintenance.
+
+
+## Meeting Scheduler
+
+The sixth project in this repository is a Meeting Scheduler, a system that simulates meeting scheduling for users. It demonstrates the following concepts:
+
+- Observer pattern for notifying users about scheduled meetings.
+- Book meeting for muliple users in particular time slot, so that room slot does not collide with each other.
+- Room calendar management, tracking when a room is booked or available.
+- Concurrency control, preventing scheduling conflicts in real time.
+
+### Features
+
+- Book and cancel meetings seamlessly.
+- Prevent double booking, allowing reservations only if the time slot is available.
+- Capacity-based booking, ensuring a room can only be booked if it has enough seats for all attendees.
+- Automated notifications to inform users about meeting bookings or cancellations.
+- Fetching all free rooms for a specific time slot.
 
 ## Contributing Guidelines
 Contributions to expand this repository with more low-level system design problems and solutions are welcomed. Here’s how you can contribute:
