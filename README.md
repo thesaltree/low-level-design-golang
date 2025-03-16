@@ -110,6 +110,15 @@ The sixth project in this repository is a Meeting Scheduler, a system that simul
 - Room calendar management, tracking when a room is booked or available.
 - Concurrency control, preventing scheduling conflicts in real time.
 
+## ATM
+
+The seventh project in this repository is a ATM machine, a system that simulates ATM. It demonstrates the following concepts:
+
+- State design pattern for different state of ATM.
+- Chain of responsibility principle for withdrawing cash.
+- Template pattern for handling error of each place in one place.
+- Concurrency control, preventing atm to conflict.
+
 ### Features
 
 - Book and cancel meetings seamlessly.
