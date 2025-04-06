@@ -2,6 +2,10 @@ package atm
 
 import "atm-machine/model"
 
+const (
+	InvalidCard = "invalid"
+)
+
 // This will be actuall implementation of card reader // i am returning a card from here
 type CardReader struct {
 }
@@ -13,7 +17,7 @@ func NewCardReader() CardReader {
 // for now it will return some dummy card depend of input for acting as multiple car
 func (c CardReader) ReadCard(cardType string) model.Card {
 	switch cardType {
-	case "invalid":
+	case InvalidCard:
 		return model.Card{
 			Status: model.NoCard,
 		}

@@ -17,11 +17,13 @@ func (s *SelectAccount) SelectAccount() error {
 	fmt.Println("Select account type SAVING OR CURRENT:\n")
 	fmt.Scanf("%s", &accountType)
 
-	s.atm.account, err = AccountFactory(AccountType(accountType))
+	if s.atm.account, err = AccountFactory(AccountType(accountType)); err != nil {
+		return err
+	}
 
 	s.atm.SetState(s.atm.dispenserAmount)
 
-	return err
+	return nil
 
 }
 

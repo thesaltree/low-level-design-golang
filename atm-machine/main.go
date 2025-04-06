@@ -13,7 +13,7 @@ func main() {
 		var runProcess string
 
 		fmt.Printf("\nATM state:%s\n", atm.StateName())
-		fmt.Println("Input do you want to proceed, press n to exist")
+		fmt.Println("Input do you want to proceed, press n to exit")
 		fmt.Scanf("%s", &runProcess)
 
 		fmt.Println(runProcess)

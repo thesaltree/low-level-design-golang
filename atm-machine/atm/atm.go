@@ -7,13 +7,13 @@ import (
 )
 
 type WithdrawNote struct {
-	FiveHundread int
-	Hundread     int
-	Left         int
+	FiveHundred int
+	Hundred     int
+	Left        int
 }
 
 type ATM struct {
-	countOFNotes    map[string]int
+	countOfNotes    map[string]int
 	card            model.Card
 	account         Account
 	uiOption        []string
@@ -30,7 +30,7 @@ func (a *ATM) SetState(s ATMState) {
 	a.currentState = s
 }
 
-func (a *ATM) ResetAtm() {
+func (a *ATM) CleanPreviousAtmTransaction() {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	a.WithdrawAs = &WithdrawNote{}
@@ -41,7 +41,7 @@ func (a *ATM) ResetAtm() {
 func (a *ATM) PrintMoney() {
 	a.mu.Lock()
 	defer a.mu.Unlock()
-	fmt.Printf("\n500 note present:%d, 100 not present:%d", a.countOFNotes["500"], a.countOFNotes["100"])
+	fmt.Printf("\n500 note present:%d, 100 not present:%d", a.countOfNotes["500"], a.countOfNotes["100"])
 }
 
 func (a *ATM) StateName() string {
@@ -64,8 +64,15 @@ func (a *ATM) GetCardDetail() error {
 
 func (a *ATM) DispenserAmount() error {
 	a.mu.Lock()
-	defer a.mu.Unlock()
-	return a.currentState.DispenserAmount()
+	if err := a.currentState.DispenserAmount(); err != nil {
+		return err
+	}
+
+	a.mu.Unlock()
+
+	a.CleanPreviousAtmTransaction()
+
+	return nil
 }
 
 func (a *ATM) SelectAccount() error {
@@ -77,7 +84,7 @@ func (a *ATM) SelectAccount() error {
 func (a *ATM) Execute(operation func() error) {
 	err := operation()
 	if err != nil {
-		a.ResetAtm()
+		a.CleanPreviousAtmTransaction()
 		a.SetState(a.insertCard)
 		fmt.Println("All operation will be nil operation:")
 		fmt.Println("Error while operation:", err.Error())
@@ -86,7 +93,7 @@ func (a *ATM) Execute(operation func() error) {
 
 func NewATM() *ATM {
 	atm := &ATM{
-		countOFNotes: map[string]int{
+		countOfNotes: map[string]int{
 			"500": 1000,
 			"200": 2000,
 			"100": 1000,
@@ -103,10 +110,6 @@ func NewATM() *ATM {
 	}
 
 	atm.selectAccount = &SelectAccount{
-		atm: atm,
-	}
-
-	atm.readCard = &ReadCard{
 		atm: atm,
 	}
 

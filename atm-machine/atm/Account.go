@@ -24,20 +24,19 @@ func AccountFactory(accType AccountType) (Account, error) {
 	}
 }
 
-type SavingAccount struct {
+type BaseAccount struct {
 	acctNo  string
 	balance float64
 }
 
-func (s *SavingAccount) GetBalance() float64 {
-	return s.balance
+func (b *BaseAccount) GetBalance() float64 {
+	return b.balance
+}
+
+type SavingAccount struct {
+	BaseAccount
 }
 
 type CurrentAccount struct {
-	acctNo  string
-	balance float64
-}
-
-func (c *CurrentAccount) GetBalance() float64 {
-	return c.balance
+	BaseAccount
 }

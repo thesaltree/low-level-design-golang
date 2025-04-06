@@ -23,20 +23,19 @@ func (w *DispenserAmount) DispenserAmount() error {
 	if w.atm.WithdrawAs.Left > 0 {
 		return errors.New("This amount is not divisible of 100")
 	} else {
-		if w.atm.countOFNotes["500"] >= w.atm.WithdrawAs.FiveHundread {
-			w.atm.countOFNotes["500"] = w.atm.countOFNotes["500"] - w.atm.WithdrawAs.FiveHundread
+		if w.atm.countOfNotes["500"] >= w.atm.WithdrawAs.FiveHundred {
+			w.atm.countOfNotes["500"] = w.atm.countOfNotes["500"] - w.atm.WithdrawAs.FiveHundred
 		} else {
 			return errors.New("Bank don't have enough fund 500")
 		}
 
-		if w.atm.countOFNotes["100"] >= w.atm.WithdrawAs.Hundread {
-			w.atm.countOFNotes["100"] = w.atm.countOFNotes["100"] - w.atm.WithdrawAs.Hundread
+		if w.atm.countOfNotes["100"] >= w.atm.WithdrawAs.Hundred {
+			w.atm.countOfNotes["100"] = w.atm.countOfNotes["100"] - w.atm.WithdrawAs.Hundred
 		} else {
 			return errors.New("Bank don't have enough fund 100")
 		}
 	}
 
-	w.atm.ResetAtm()
 	w.atm.SetState(w.atm.insertCard)
 
 	return nil
