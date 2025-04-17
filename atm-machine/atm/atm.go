@@ -18,6 +18,7 @@ type ATM struct {
 	account         Account
 	uiOption        []string
 	WithdrawAs      *WithdrawNote
+	insertPin       ATMState
 	insertCard      ATMState
 	readCard        ATMState
 	selectAccount   ATMState
@@ -60,6 +61,12 @@ func (a *ATM) GetCardDetail() error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 	return a.currentState.GetCardDetail()
+}
+
+func (a *ATM) InsertPin() error {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	return a.currentState.InsertPin()
 }
 
 func (a *ATM) DispenserAmount() error {
@@ -106,6 +113,10 @@ func NewATM() *ATM {
 	}
 
 	atm.readCard = &ReadCard{
+		atm: atm,
+	}
+
+	atm.insertPin = &InsertPin{
 		atm: atm,
 	}
 

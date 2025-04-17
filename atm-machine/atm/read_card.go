@@ -11,7 +11,7 @@ func (d *ReadCard) GetCardDetail() error {
 		d.atm.SetState(d.atm.insertCard)
 	}
 	d.atm.card = card
-	d.atm.SetState(d.atm.selectAccount)
+	d.atm.SetState(d.atm.insertPin)
 	return nil
 }
 

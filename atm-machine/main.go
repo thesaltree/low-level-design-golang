@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+// flow of ATM
+// insertCard state -> readCard state -> insertPin state -> selectAccount state -> withdrawAmount state
 func main() {
 	atm := atm.NewATM()
 
@@ -28,6 +30,10 @@ func main() {
 		fmt.Printf("\nATM state:%s\n", atm.StateName())
 
 		atm.Execute(atm.GetCardDetail)
+
+		fmt.Printf("\nATM state:%s\n", atm.StateName())
+
+		atm.Execute(atm.InsertPin)
 
 		fmt.Printf("\nATM state:%s\n", atm.StateName())
 		// insert card

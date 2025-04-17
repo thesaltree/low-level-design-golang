@@ -19,6 +19,7 @@ func (s *InsertPin) InsertPin() error {
 	fmt.Scanf("%s", &pin)
 
 	if pin == "1111" {
+		s.atm.SetState(s.atm.selectAccount)
 		return nil
 	} else {
 		return errors.New("Pin is not valid")
